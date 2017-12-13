@@ -17,12 +17,13 @@ ActiveRecord::Schema.define(version: 20171213035030) do
     t.string "commentable_type"
     t.integer "user_id"
     t.integer "parents_id"
+    t.string "content"
   end
 
   create_table "group_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "group_id"
     t.integer "user_id"
-    t.integer "permission"
+    t.integer "permission", default: 0
   end
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -52,7 +53,7 @@ ActiveRecord::Schema.define(version: 20171213035030) do
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "sender_id"
     t.integer "accepter_id"
-    t.integer "status"
+    t.integer "status", default: 0
   end
 
   create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(version: 20171213035030) do
     t.integer "sex"
     t.string "address"
     t.string "job"
+    t.string "avatar"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
