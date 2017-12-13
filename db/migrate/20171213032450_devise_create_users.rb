@@ -9,6 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.integer :sex
       t.string :address
       t.string :job
+      t.string :avatar
 
       ## Recoverable
       t.string   :reset_password_token
