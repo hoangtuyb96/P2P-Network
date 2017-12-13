@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+  app_name: "P2P Network"
+  slogan: <p>Come with us, this is  <strong>"free and funny"</strong>. You can login and signup here.</p>
+  static_pages:
+    home:
+      login_title: <h3>Login to our site</h3>
+      login_tut: <p>Enter email and password to log on:</p>
+      login_or: <h3>...or login with:</h3>
+      signup_title: <h3>Sign up now</h3>
+      signup_tut: <p>Fill in the form below to get instant access:</p>
