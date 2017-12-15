@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  ATTRIBUTES_PARAMS = %i(email password password_confirmation fullname address).freeze
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -23,5 +25,7 @@ class User < ApplicationRecord
   has_many :request_accept_friend, through: :passive_relationships,
     source: :sender
 
-  validates :email, presence: true
+  validates :email, presence: true,
+    length: {maximum: 255},
+    format: {with: VALID_EMAIL_REGEX}
 end
