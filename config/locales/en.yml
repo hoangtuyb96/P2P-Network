@@ -33,6 +33,10 @@ en:
   hello: "Hello world"
   app_name: "P2P Network"
   slogan: <p>Come with us, this is  <strong>"free and funny"</strong>. You can login and signup here.</p>
+  profile: "Profile"
+  settings: "Settings"
+  login_button: "Login"
+  logout_button: "Logout"
   static_pages:
     home:
       login_title: <h3>Login to our site</h3>
@@ -44,3 +48,6 @@ en:
     create:
       success: "Your account has been created"
       failed: "Somethings went wrongs... Please check your information again"
+  sessions:
+    destroy:
+      not_logged_in: "You haven't logged in"
