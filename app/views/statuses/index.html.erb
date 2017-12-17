@@ -1,0 +1,5 @@
+<%= provide :title, t(".title") %>
+<% @statuses.each do |status| %>
+  <%= status.content %>
+  <br>
+<% end %>

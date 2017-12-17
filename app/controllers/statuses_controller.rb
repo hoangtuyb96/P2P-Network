@@ -22,7 +22,7 @@ class StatusesController < ApplicationController
 
   private
 
-  attr_reader :status
+  attr_reader :status, :statuses
 
   def status_params
     params.require(:status).permit Status::ATTRIBUTES_PARAMS,
