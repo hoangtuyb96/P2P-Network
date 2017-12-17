@@ -21,6 +21,9 @@ gem "bcrypt", "~> 3.1.7"
 gem "devise"
 gem "faker"
 gem "pry"
+gem "cocoon"
+gem "carrierwave"
+gem "cloudinary"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

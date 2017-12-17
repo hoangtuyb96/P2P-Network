@@ -1,0 +1,26 @@
+<%= provide :title, t(".title") %>
+<h1><%= t(".title") %></h1>
+
+<%= form_for @status, url: user_statuses_path do |f| %>
+  <%= render "shared/error", object: @status %>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <ul>
+    <h2>Images:</h2>
+
+    <%= f.fields_for :images do |image| %>
+      <%= render "image_fields", f: image %> 
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association t(".add_image"), f, :images %>
+    </div>
+  </ul>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

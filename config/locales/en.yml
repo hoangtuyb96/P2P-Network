@@ -51,3 +51,12 @@ en:
   sessions:
     destroy:
       not_logged_in: "You haven't logged in"
+  statuses:
+    new:
+      title: "Create new status"
+      add_image: "Add image"
+    image_fields:
+      remove_image: "Remove image"
+    create:
+      success: "Create status successfully"
+      fail: "Create status failed"
