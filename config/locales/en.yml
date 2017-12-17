@@ -52,6 +52,8 @@ en:
     destroy:
       not_logged_in: "You haven't logged in"
   statuses:
+    index:
+      title: "All status"
     new:
       title: "Create new status"
       add_image: "Add image"
