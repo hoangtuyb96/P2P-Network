@@ -3,5 +3,5 @@ class Image < ApplicationRecord
 
   belongs_to :status
 
-  validates :status_id, presence: true
+  mount_uploader  :link, ImageUploader
 end
