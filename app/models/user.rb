@@ -24,6 +24,7 @@ class User < ApplicationRecord
     source: :accepter
   has_many :request_accept_friend, through: :passive_relationships,
     source: :sender
+  has_many :group_members
 
   validates :email, presence: true,
     length: {maximum: 255},

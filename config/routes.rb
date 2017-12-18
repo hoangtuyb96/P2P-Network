@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :statuses, only: [:new, :create, :index]
   end
+  resources :groups, only: [:new, :create]
 end
