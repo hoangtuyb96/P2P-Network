@@ -62,3 +62,6 @@ en:
     create:
       success: "Create status successfully"
       fail: "Create status failed"
+  groups:
+    new:
+      title: "Create new group"
