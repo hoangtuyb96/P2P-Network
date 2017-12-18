@@ -4,8 +4,7 @@ class SessionsController < Devise::SessionsController
 
   def create
     user = User.find_by email: sign_in_params[:email]
-    # if user && user.valid_password?(sign_in_params[:password])
-    if user
+    if user && user.valid_password?(sign_in_params[:password])
       sign_in user
       flash[:success] = t("devise.sessions.signed_in")
       redirect_to root_path
