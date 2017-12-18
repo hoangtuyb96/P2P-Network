@@ -1,5 +1,14 @@
 <%= provide :title, t(".title") %>
-<% @statuses.each do |status| %>
-  <%= status.content %>
-  <br>
-<% end %>
+<div class="container">
+  <div class="row">
+      <% @statuses.each do |status| %>
+        <% @status = status %>
+        <div class="col-md-10">
+          <%= @status.content %>
+        </div>
+        <div class="col-md-2">
+          <%= render "like_form" if user_signed_in? %>
+        </div>
+      <% end %>
+  </div>
+</div>

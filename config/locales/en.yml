@@ -62,6 +62,10 @@ en:
     create:
       success: "Create status successfully"
       fail: "Create status failed"
+    like:
+      like_button: "Like"
+    unlike:
+      unlike_button: "Unlike"
   groups:
     new:
       title: "Create new group"

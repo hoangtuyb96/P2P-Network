@@ -1,0 +1,10 @@
+<div id="like_form_<%= @status.id %>">
+  <% if user_signed_in? %>
+    <% @like = Like.find_like(@status.id, @status.class, current_user.id).first %>
+    <% if @like.present? %>
+      <%= render "unlike" %>
+    <% else %>
+      <%= render "like" %>
+    <% end %>
+  <% end %>
+</div>
