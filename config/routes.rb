@@ -12,4 +12,5 @@ Rails.application.routes.draw do
     resources :statuses, only: [:new, :create, :index]
   end
   resources :groups, only: [:new, :create]
+  resources :likes, only: [:create, :destroy]
 end
