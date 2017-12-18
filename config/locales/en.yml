@@ -69,3 +69,6 @@ en:
   groups:
     new:
       title: "Create new group"
+  images:
+    show:
+      title: "Image"

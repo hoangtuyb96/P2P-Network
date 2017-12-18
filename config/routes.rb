@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
   resources :groups, only: [:new, :create]
   resources :likes, only: [:create, :destroy]
+  resources :images, only: :show
 end

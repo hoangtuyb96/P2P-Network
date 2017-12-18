@@ -9,6 +9,12 @@
         <div class="col-md-2">
           <%= render "like_form" if user_signed_in? %>
         </div>
+
+        <% @status.images.limit(5).each do |image| %>
+          <div class="col-md-6">
+            <%= link_to cl_image_tag(image.link, alt: "image"), image_path(image.id) %>
+          </div>
+        <% end %>
       <% end %>
   </div>
 </div>
