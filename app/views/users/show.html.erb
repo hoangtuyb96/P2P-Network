@@ -56,7 +56,9 @@
               <div class="panel-footer">
                 <% if @user == current_user %>
                   <%= f.submit %>
-                  <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                  <div class="btn btn-danger">
+                    <%= link_to "Delete", @user, method: :delete %>
+                  </div>
                 <% end %>
               </div>
             </div>

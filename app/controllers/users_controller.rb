@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i(show update)
-  before_action :check_permission, only: :update
+  before_action :find_user, only: %i(show update destroy)
+  before_action :check_permission, only: %i(update destroy)
 
   def show
   end
@@ -12,6 +12,16 @@ class UsersController < ApplicationController
     else
       redirect_to :user
       flash[:fail] = "Fail"
+    end
+  end
+
+  def destroy
+    if user.destroy
+      flash[:success] = "Destroy successfully"
+      redirect_to root_path
+    else
+      flash[:fail] = "Destroy fail"
+      redirect_to :user
     end
   end
 
