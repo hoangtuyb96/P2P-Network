@@ -1,10 +1,15 @@
-<div id="like_form_<%= @status.id %>">
+<% if @status.present? %>
+  <% @object = @status %>
+<% else %>
+  <% @object = @image %>
+<% end %>
+<div id="like_form_<%= @object.id %>">
   <% if user_signed_in? %>
-    <% @like = Like.find_like(@status.id, @status.class, current_user.id).first %>
+    <% @like = Like.find_like(@object.id, @object.class, current_user.id).first %>
     <% if @like.present? %>
-      <%= render "unlike" %>
+      <%= render "statuses/unlike" %>
     <% else %>
-      <%= render "like" %>
+      <%= render "statuses/like" %>
     <% end %>
   <% end %>
 </div>

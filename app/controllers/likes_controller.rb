@@ -35,6 +35,10 @@ class LikesController < ApplicationController
   attr_reader :like
 
   def find_status
-    @status = Status.find_by id: params[:likeable_id]
+    if params[:likeable_type] == "Status"
+      @object = Status.find_by id: params[:likeable_id]
+    else
+      @object = Image.find_by id: params[:likeable_id]
+    end
   end
 end
