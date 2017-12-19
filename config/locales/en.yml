@@ -72,3 +72,7 @@ en:
   images:
     show:
       title: "Image"
+    like:
+      like_button: "Like"
+    unlike:
+      unlike_button: "Unlike"

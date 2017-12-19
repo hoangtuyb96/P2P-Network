@@ -1,6 +1,6 @@
 <%= form_for :like, url: like_path(@like.id), method: :delete, remote: true do |f| %>
-  <div><%= hidden_field_tag :likeable_id, @status.id %></div>
-  <div><%= hidden_field_tag :likeable_type, @status.class %></div>
+  <div><%= hidden_field_tag :likeable_id, @object.id %></div>
+  <div><%= hidden_field_tag :likeable_type, @object.class %></div>
   <%= f.submit t(".unlike_button"), class: "btn btn-danger" %>
 <% end %>
-<%= @status.likes.count %> likes
+<%= @object.likes.count %> likes
