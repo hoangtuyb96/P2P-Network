@@ -1,0 +1,18 @@
+<%= form_for @status, url: user_statuses_path(current_user) do |f| %>
+  <%= render "shared/error", object: @status %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "What are you doing right now?", class: "form-control" %>
+  </div>
+  </br>
+  <ul class="nav nav-pills pull-left">
+    <%= f.fields_for :images do |image| %>
+      <%= render "image_fields", f: image %> 
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association t(".add_image"), f, :images %>
+    </div>
+  </ul>
+
+  <%= f.submit "Post", class: "btn btn-success pull-right" %>
+<% end %>

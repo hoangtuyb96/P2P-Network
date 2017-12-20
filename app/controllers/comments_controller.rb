@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :find_commentable, only: :create
 
   def create
+    @object = commentable
     @comment = @commentable.comments.new comment_params
     @comment.user_id = current_user.id
     if @comment.save
