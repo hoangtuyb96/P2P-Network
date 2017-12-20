@@ -1,0 +1,17 @@
+<ul class="nav nav-pills pull-left countlist" role="tablist">
+  <li role="presentation">
+    <h3><%= @user.request_accept_friend.count %><br>
+      <small>Follower</small> 
+    </h3>
+  </li>
+  <li role="presentation">
+    <h3><%= @user.request_sending_friend.count %><br>
+      <small>Following</small> 
+    </h3>
+  </li>
+  <li role="presentation">
+    <h3><%= @user.statuses.count %><br>
+      <small>Post</small> 
+    </h3>
+  </li>
+</ul>

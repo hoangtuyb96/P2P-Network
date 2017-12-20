@@ -1,0 +1,10 @@
+<div id="follow_form">
+  <% unless @user == current_user %>
+    <% @relationship = Relationship.find_relationship(current_user.id, @user.id).first %>
+    <% if @relationship.present? %>
+      <%= render "unfollow" %>
+    <% else %>
+      <%= render "follow" %>
+    <% end %>
+  <% end %>
+</div>
