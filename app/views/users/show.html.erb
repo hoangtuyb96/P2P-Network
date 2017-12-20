@@ -75,7 +75,7 @@
     <div class="col-md-12 text-center ">
       <div class="panel panel-default">
         <div class="userprofile social ">
-          <div class="userpic"> <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="userpicimg"> </div>
+          <div class="userpic"> <%= cl_image_tag(@user.avatar, class: "media-object-avatar-profile") %> </div>
           <h3 class="username"><%= @user.fullname %></h3>
           <p><%= @user.address %></p>
           <div class="socials tex-center"> <a href="" class="btn btn-circle btn-primary ">
@@ -203,7 +203,7 @@
           </div>
           <div class="col-md-12">
             <div class="media">
-              <div class="media-left"> <a href="javascript:void(0)"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="media-object"> </a> </div>
+              <div class="media-left"> <a href="javascript:void(0)"> <%= cl_image_tag(@user.avatar, class: "media-object") %> </a> </div>
               <div class="media-body">
                 <h4 align="left"><%= @user.fullname %>
                   <small><i class="fa fa-clock-o"></i> <%= status.created_at %></small> 
