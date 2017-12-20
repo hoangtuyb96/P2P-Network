@@ -3,5 +3,6 @@ class ImagesController < ApplicationController
 
   def show
     @image = Image.find_by id: params[:id]
+    @comment = current_user.comments.new
   end
 end

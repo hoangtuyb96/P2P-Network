@@ -4,6 +4,8 @@ class CreateGroups < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :about
       t.string :cover
+
+      t.timestamps
     end
   end
 end
