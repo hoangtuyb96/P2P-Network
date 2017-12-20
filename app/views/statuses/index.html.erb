@@ -6,7 +6,9 @@
           <div class="box-content">
             <% @status = status %>
             <div class="col-md-10">
-              <%= @status.content %>
+              <div align="left">
+                <b><%= @status.content %></b>
+              </div>
             </div>
             <div class="col-md-2">
               <%= render "like_form" if user_signed_in? %>

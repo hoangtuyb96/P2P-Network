@@ -7,7 +7,7 @@ class SessionsController < Devise::SessionsController
     if user && user.valid_password?(sign_in_params[:password])
       sign_in user
       flash[:success] = t("devise.sessions.signed_in")
-      redirect_to root_path
+      redirect_to user_statuses_path(current_user)
     else
       flash[:danger] = t("devise.sessions.signed_in_failed")
       redirect_to root_path
