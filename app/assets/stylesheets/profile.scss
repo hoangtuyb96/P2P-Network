@@ -318,6 +318,16 @@ body {
     -ms-box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
 }
 
+.media-object-avatar-profile {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 100px;
+    box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
 .media:first-child {
     margin-top: 15px;
 }
