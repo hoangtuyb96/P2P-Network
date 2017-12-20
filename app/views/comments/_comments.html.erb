@@ -1,9 +1,13 @@
-<%= @object = @commentable %>
-<% unless @object.present? %>
-  <% if @status.present? %>
-    <% @object = @status %>
-  <% else %>
-    <% @object = @image %>
+<% if @status_tmp.present? %>
+  <% @object = @status_tmp %> 
+<% else %>
+  <% @object = @commentable %>
+  <% unless @object.present? %>
+    <% if @status.present? %>
+      <% @object = @status %>
+    <% else %>
+      <% @object = @image %>
+    <% end %>
   <% end %>
 <% end %>
 <% @object.comments.each do |comment| %>

@@ -7,16 +7,17 @@
           <div class="comment-box">
             <div class="comment-head">
               <h6 class="comment-name"><%= current_user.fullname %></h6>
-              <span>created at <%= current_user.created_at %></span>
               <i class="fa fa-reply"></i>
               <i class="fa fa-heart"></i>
             </div>
             <%= form_for @comment, url: comments_path, method: :post, remote: true do |f| %>
               <div class="comment-content">
-                <%= f.text_area :content, class: "form-control" %>
-                <%= hidden_field_tag :commentable_id, @object.id %>
-                <%= hidden_field_tag :commentable_type, @object.class %>
-                <%= f.submit "Post" %>
+                <ul>
+                  <li><%= f.text_area :content, class: "form-control" %></li>
+                  <%= hidden_field_tag :commentable_id, @object.id %>
+                  <%= hidden_field_tag :commentable_type, @object.class %>
+                  <li><%= f.submit "Post", class: "btn btn-success pull-right" %></li>
+                </ul>
               </div>
             <% end %>
           </div>
