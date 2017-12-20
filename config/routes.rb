@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :images, only: :show
   resources :users, only: [:show, :update, :destroy]
   resources :comments, only: :create
+  resources :relationships, only: [:create, :destroy]
 end

@@ -84,26 +84,7 @@
             <i class="fa fa-twitter"></i></a> <a href="" class="btn btn-circle btn-warning "><i class="fa fa-envelope"></i></a>
           </div>
         </div>
-        <div class="col-md-12 border-top border-bottom">
-          <ul class="nav nav-pills pull-left countlist" role="tablist">
-            <li role="presentation">
-              <h3><%= @user.request_accept_friend.count %><br>
-                <small>Follower</small> 
-              </h3>
-            </li>
-            <li role="presentation">
-              <h3><%= @user.request_sending_friend.count %><br>
-                <small>Following</small> 
-              </h3>
-            </li>
-            <li role="presentation">
-              <h3><%= @user.statuses.count %><br>
-                <small>Post</small> 
-              </h3>
-            </li>
-          </ul>
-          <button class="btn btn-primary followbtn">Follow</button>
-        </div>
+        <%= render "follow_form" %>
         <div class="clearfix"></div>
       </div>
     </div>
