@@ -1,11 +1,12 @@
 <% provide :title, t(".title") %>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-7">
     <%= cl_image_tag(@image.link, alt: "image") %>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-5">
     <h3><%= @image.status.user.fullname %></h3>
     <p><%= @image.status.content %><p>
     <%= render "statuses/like_form" if user_signed_in? %>
+    <%= render "comment_form" %>
   </div>
 </div>

@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="comments-container">
+    <ul id="comments-list" class="comments-list">
+      <li>
+        <div class="comment-main-level">
+          <div class="comment-avatar"><%= cl_image_tag(current_user.avatar) %></div>
+          <div class="comment-box">
+            <div class="comment-head">
+              <h6 class="comment-name"><%= current_user.fullname %></h6>
+              <span>created at <%= current_user.created_at %></span>
+              <i class="fa fa-reply"></i>
+              <i class="fa fa-heart"></i>
+            </div>
+            <%= form_for @comment, url: comments_path, method: :post, remote: true do |f| %>
+              <div class="comment-content">
+                <%= f.text_area :content, class: "form-control" %>
+                <%= hidden_field_tag :commentable_id, @object.id %>
+                <%= hidden_field_tag :commentable_type, @object.class %>
+                <%= f.submit "Post" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

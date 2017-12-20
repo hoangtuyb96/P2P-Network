@@ -4,6 +4,8 @@ class CreateGroupMembers < ActiveRecord::Migration[5.1]
       t.integer :group_id
       t.integer :user_id
       t.integer :permission, default: 0
+
+      t.timestamps
     end
   end
 end

@@ -4,6 +4,8 @@ class CreateLikes < ActiveRecord::Migration[5.1]
       t.integer :likeable_id
       t.string :likeable_type
       t.integer :user_id
+
+      t.timestamps
     end
   end
 end

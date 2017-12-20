@@ -5,6 +5,8 @@ class CreateReports < ActiveRecord::Migration[5.1]
       t.integer :reportable_id
       t.string :reportable_type
       t.text :content
+
+      t.timestamps
     end
   end
 end

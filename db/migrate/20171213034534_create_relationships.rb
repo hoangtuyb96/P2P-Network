@@ -4,6 +4,8 @@ class CreateRelationships < ActiveRecord::Migration[5.1]
       t.integer :sender_id
       t.integer :accepter_id
       t.integer :status, default: 0
+
+      t.timestamps
     end
   end
 end
