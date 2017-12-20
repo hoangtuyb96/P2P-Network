@@ -2,19 +2,24 @@
 <div class="container">
   <div class="row">
       <% @statuses.each do |status| %>
-        <% @status = status %>
-        <div class="col-md-10">
-          <%= @status.content %>
-        </div>
-        <div class="col-md-2">
-          <%= render "like_form" if user_signed_in? %>
-        </div>
+        <div class="box">
+          <div class="box-content">
+            <% @status = status %>
+            <div class="col-md-10">
+              <%= @status.content %>
+            </div>
+            <div class="col-md-2">
+              <%= render "like_form" if user_signed_in? %>
+            </div>
 
-        <% @status.images.limit(5).each do |image| %>
-          <div class="col-md-6">
-            <%= link_to cl_image_tag(image.link, alt: "image"), image_path(image.id) %>
+            <% @status.images.limit(5).each do |image| %>
+              <div class="col-md-3">
+                <%= link_to cl_image_tag(image.link, alt: "image"), image_path(image.id) %>
+              </div>
+            <% end %>
+            <div class="clearfix"></div>
           </div>
-        <% end %>
+        </div>
       <% end %>
   </div>
   <%= paginate @statuses %>
