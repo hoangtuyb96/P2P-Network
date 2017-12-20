@@ -2,7 +2,7 @@ class StatusesController < ApplicationController
   before_action :check_logged_in, only: %i(new create)
 
   def index
-    @statuses = Status.limit(5)
+    @statuses = Status.all.page(params[:page]).per(5)
   end
 
   def new
