@@ -1,6 +1,10 @@
 <header class = "navbar navbar-fixed-top navbar-inverse">
   <div class = "container">
-    <%= link_to t("app_name"), root_path , id: "logo" %>
+    <% if user_signed_in? %>
+      <%= link_to t("app_name"), user_statuses_path(current_user.id) , id: "logo" %>
+    <% else %>
+      <%= link_to t("app_name"), root_path , id: "logo" %>
+    <% end %>
     <nav>
       <ul class = "nav navbar-nav navbar-right">
         <% if user_signed_in? %>
@@ -11,7 +15,10 @@
             <%= link_to current_user.fullname, current_user %> 
           </li>
           <li>
-            <%= link_to "Wall", "#" %>
+            <%= link_to "Post status", new_user_status_path(current_user) %>
+          </li>
+          <li>
+            <%= link_to "Wall", user_statuses_path(current_user.id) %>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
