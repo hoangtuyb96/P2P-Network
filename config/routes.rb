@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update, :destroy]
   resources :comments, only: :create
   resources :relationships, only: [:create, :destroy]
+
+  mount ActionCable.server => "/cable"
 end

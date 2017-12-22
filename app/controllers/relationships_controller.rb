@@ -8,6 +8,7 @@ class RelationshipsController < ApplicationController
     relationship.sender_id = params[:sender_id]
     relationship.accepter_id = params[:accepter_id]
     if relationship.save
+      follow_notification
       respond_to do |format|
         format.html { redirect_to root_path }
         format.js
@@ -41,5 +42,9 @@ class RelationshipsController < ApplicationController
 
   def find_accepter
     @user = User.find_by id: params[:accepter_id]
+  end
+
+  def follow_notification
+    NotificationWhenBeFollowedService.new(sender: current_user, accepter: @user).perform
   end
 end

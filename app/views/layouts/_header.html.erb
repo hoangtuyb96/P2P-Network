@@ -20,6 +20,9 @@
           <li>
             <%= link_to "Wall", user_statuses_path(current_user.id) %>
           </li>
+          <li>
+            <%= render "notifications/notification_center", notifications: @notifications %>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-cogs" aria-hidden="true"></i>

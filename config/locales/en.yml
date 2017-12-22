@@ -76,3 +76,5 @@ en:
       like_button: "Like"
     unlike:
       unlike_button: "Unlike"
+  notifications:
+    be_followed: "%{sender_name} has followed you"
