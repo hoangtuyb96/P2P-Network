@@ -1,7 +1,15 @@
 class RelationshipsController < ApplicationController
-  before_action :check_logged_in, only: %i(create destroy)
+  before_action :check_logged_in, only: %i(index create destroy)
   before_action :find_relationship_to_destroy, only: :destroy
   before_action :find_accepter, only: %i(create destroy)
+
+  def following
+    @following = current_user.request_sending_friend
+  end
+
+  def follower
+    @follower = current_user.request_accept_friend
+  end
 
   def create
     @relationship = Relationship.new

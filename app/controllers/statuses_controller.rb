@@ -3,6 +3,7 @@ class StatusesController < ApplicationController
 
   def index
     @statuses = Status.all.page(params[:page]).per(5)
+    @groups = current_user.group_joined
   end
 
   def new

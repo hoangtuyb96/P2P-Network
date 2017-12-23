@@ -6,5 +6,7 @@ class Group < ApplicationRecord
   has_many :user_in_group, through: :user_group, source: :user
   has_many :group_members
 
+  mount_uploader :cover, CoverGroupUploader
+
   validates :name, presence: true
 end
