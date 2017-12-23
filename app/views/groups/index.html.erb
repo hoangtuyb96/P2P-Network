@@ -1,4 +1,4 @@
-<%= provide :title, t(".title") %>
+<%= provide :title, "Groups" %>
 <div class="container">
   <div class="row">
     <div class="col-md-3">
@@ -11,12 +11,15 @@
         <div align="left">
           <%= link_to user_following_path(current_user) do %><i style="color:black" class="fa fa-address-book" aria-hidden="true"> Following</i><% end %>
         </div>
+        
         <div align="left">
           <%= link_to user_follower_path(current_user) do %><i style="color:black" class="fa fa-address-book" aria-hidden="true"> Follower</i><% end %>
         </div>
+
         <div align="left">
           <%= link_to groups_path do %><i style="color:black" class="fa fa-users" aria-hidden="true"> Groups</i><% end %>
         </div>
+
         <% @groups.each do |group| %>
           <div class="group-show" align="left">
             <%= link_to group do %><i style="color:gray" class="fa fa-users" aria-hidden="true"><%= group.name %></i><% end %>
@@ -25,30 +28,28 @@
       </div>
     </div>
     <div class="col-md-9">
-      <% @statuses.each do |status| %>
-        <div class="box">
-          <div class="box-content">
-            <% @status = status %>
-            <div class="col-md-10">
-              <div align="left">
-                <b><%= @status.content %></b>
+      <div class="box">
+        <div class="row">
+          <% @groups.each do |group| %>
+            <div class="col-md-6">
+              <div class="list-user-group">
+                <%= link_to group do %>
+                  <% unless group.cover.present? %>
+                    <%= cl_image_tag("https://renderman.pixar.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png") %>
+                    <h3><%= group.name %></h3>
+                  <% else %>
+                    <%= cl_image_tag(group.cover, :transformation=>[
+                      {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+                      {:width=>300, :crop=>"scale"}
+                      ]) %>
+                    <h3><%= group.name %></h3>
+                  <% end %>
+                <% end %>
               </div>
             </div>
-            <div class="col-md-2">
-              <%= render "like_form" if user_signed_in? %>
-            </div>
-
-            <% @status.images.limit(5).each do |image| %>
-              <div class="col-md-3">
-                <%= link_to cl_image_tag(image.link, alt: "image"), image_path(image.id) %>
-              </div>
-            <% end %>
-            <div class="clearfix"></div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
-      <%= paginate @statuses %>
-      <%= page_entries_info @statuses %>
+      </div>
     </div>
   </div>
 </div>

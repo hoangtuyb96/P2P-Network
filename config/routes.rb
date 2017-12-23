@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   end
   resources :users do
     resources :statuses, only: [:new, :create, :index]
+    get "following", to: "relationships#following"
+    get "follower", to: "relationships#follower"
   end
-  resources :groups, only: [:new, :create]
+  resources :groups, except: [:edit, :update, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :images, only: :show
   resources :users, only: [:show, :update, :destroy]
