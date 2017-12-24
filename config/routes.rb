@@ -9,15 +9,19 @@ Rails.application.routes.draw do
     delete "logout", to: "sessions#destroy"
   end
   resources :users do
-    resources :statuses, only: [:new, :create, :index]
+    resources :statuses, only: [:new, :create, :index] do
+      resources :reports, only: :create
+    end
     get "following", to: "relationships#following"
     get "follower", to: "relationships#follower"
+    resources :reports, only: :create
   end
   resources :groups, except: [:edit, :update, :destroy]
   resources :likes, only: [:create, :destroy]
-  resources :images, only: :show
+  resources :images, only: :show do
+    resources :reports, only: :create
+  end
   resources :comments, only: :create
   resources :relationships, only: [:create, :destroy]
-
   mount ActionCable.server => "/cable"
 end
