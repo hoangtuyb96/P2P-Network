@@ -1,6 +1,43 @@
-<%= form_for :like, url: likes_path, remote: true do |f| %>
-  <div><%= hidden_field_tag :likeable_id, @object.id %></div>
-  <div><%= hidden_field_tag :likeable_type, @object.class %></div>
-  <%= f.submit t(".like_button"), class: "btn btn-primary" %>
-<% end %>
-<%= @object.likes.count %> likes
+<ul class="nav nav-pills pull-left ">
+  <li>
+    <%= form_for :like, url: likes_path, remote: true do |f| %>
+      <div><%= hidden_field_tag :likeable_id, @object.id %></div>
+      <div><%= hidden_field_tag :likeable_type, @object.class %></div>
+      <%= f.button :submit do %>
+        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <%= @object.likes.count %>
+      <% end %>
+    <% end %>
+  </li>
+  <li>
+    <button><i class=" glyphicon glyphicon-comment"></i><%= @object.comments.count %></button>
+  </li>
+</ul>
+<br>
+<br>
+<p align="left">
+<a data-toggle="modal" data-target="#myModal-like-count<%= @object.id %>"><%= @object.likes.count %> liked this status.</a>
+</p>
+
+<div id="myModal-like-count<%= @object.id %>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Liker</h4>
+      </div>
+      <div class="modal-body">
+        <% @object.likes.each do |f| %>
+          <%= link_to user_path(f.user) do %>
+            <%= f.user.fullname %>
+            <br>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

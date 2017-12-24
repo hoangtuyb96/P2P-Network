@@ -26,29 +26,64 @@
     </div>
     <div class="col-md-9">
       <% @statuses.each do |status| %>
-        <div class="box">
-          <div class="box-content">
-            <% @status = status %>
-            <div class="col-md-10">
-              <div align="left">
-                <b><%= @status.content %></b>
-              </div>
+      <% @status = status %>
+      <% @user = status.user %>
+      <div class="panel panel-default">
+        <div class="btn-group pull-right postbtn">
+          <button type="button" class="dotbtn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="dots"></span> </button>
+          <ul class="dropdown-menu pull-right" role="menu">
+            <li><a href="javascript:void(0)">Hide this</a></li>
+            <li><a href="javascript:void(0)">Delete</a></li>
+          </ul>
+        </div>
+        <div class="col-md-12">
+          <div class="media">
+            <div class="media-left"> <a href="javascript:void(0)"> <%= cl_image_tag(@user.avatar, class: "media-object") %> </a> </div>
+            <div class="media-body">
+              <h4 align="left"><%= @user.fullname %>
+                <small><i class="fa fa-clock-o"></i> <%= status.created_at %></small>
+                <button type="button" data-toggle="modal" data-target="#myModalStatus<%= status.id %>">Report</button>
+                <div id="myModalStatus<%= status.id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <%= form_for :report, url: user_status_reports_path(@user.id, status.id) do |f| %>
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Report</h4>
+                      </div>
+                      <div class="modal-body">
+                        <%= f.text_area :content, class: "form-control" %>
+                      </div>
+                      <div class="modal-footer">
+                        <%= f.submit "Submit report" %>
+                      </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </h4>
+              <p align="left"><%= status.content %></p>
+              <% status.images.limit(8).each do |image| %>
+                <div class="col-md-3">
+                  <%= link_to cl_image_tag(image.link, alt: "image"), image_path(image.id) %>
+                </div>
+              <% end %>
+              <div class="clearfix"></div>
+              <br>
+              <%= render "statuses/like_form" %>
             </div>
-            <div class="col-md-2">
-              <%= render "like_form" if user_signed_in? %>
-            </div>
-
-            <% @status.images.limit(5).each do |image| %>
-              <div class="col-md-3">
-                <%= link_to cl_image_tag(image.link, alt: "image"), image_path(image.id) %>
-              </div>
-            <% end %>
-            <div class="clearfix"></div>
           </div>
         </div>
+        <div class="col-md-12 border-top">
+          <div class="status-upload">
+            <% @status_tmp = status %>
+            <% @object = status %>
+            <%= render "images/comment_form" %>
+          </div>
+        </div>
+      </div>
       <% end %>
-      <%= paginate @statuses %>
-      <%= page_entries_info @statuses %>
+      <%= will_paginate @statuses %>
     </div>
   </div>
 </div>
