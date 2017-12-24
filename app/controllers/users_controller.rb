@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
   before_action :check_logged_in
-  before_action :find_user, only: %i(show update destroy)
-  before_action :check_permission, only: %i(update destroy)
+  before_action :find_user, only: %i(show edit update destroy)
+  before_action :check_permission, only: %i(edit update destroy)
 
   def show
     @status = current_user.statuses.new
     @comment = current_user.comments.new
+  end
+
+  def edit
   end
 
   def update
