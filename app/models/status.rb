@@ -1,7 +1,7 @@
 class Status < ApplicationRecord
   ATTRIBUTES_PARAMS = %i(content group_id)
 
-  has_many :images
+  has_many :images, dependent: :destroy
   has_many :likes, :as => :likeable
   has_many :comments, :as => :commentable
   has_many :reports, :as => :reportable
