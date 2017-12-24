@@ -6,6 +6,25 @@
   <div class="col-md-5">
     <h3><%= @image.status.user.fullname %></h3>
     <b><%= @image.status.content %></b>
+    <button type="button" data-toggle="modal" data-target="#myModalStatus">Report</button>
+    <div id="myModalStatus" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <%= form_for :report, url: image_reports_path(@image.id) do |f| %>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Report</h4>
+          </div>
+          <div class="modal-body">
+            <%= f.text_area :content, class: "form-control" %>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "Submit report" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <%= render "statuses/like_form" if user_signed_in? %>
     <%= render "comment_form" %>
   </div>

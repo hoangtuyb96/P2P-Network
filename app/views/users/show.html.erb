@@ -1,5 +1,4 @@
 <%= provide :title, t("profile") %>
-
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center ">
@@ -114,49 +113,66 @@
     </div>
     <div class="col-md-8 col-sm-12 pull-left posttimeline">
       <% if current_user == @user %>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="status-upload nopaddingbtm">
-              <%= render "new_form_status" %>
-            </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="status-upload nopaddingbtm">
+            <%= render "new_form_status" %>
           </div>
         </div>
+      </div>
       <% end %>
       <% @user.statuses.each do |status| %>
-        <div class="panel panel-default">
-          <div class="btn-group pull-right postbtn">
-            <button type="button" class="dotbtn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="dots"></span> </button>
-            <ul class="dropdown-menu pull-right" role="menu">
-              <li><a href="javascript:void(0)">Hide this</a></li>
-              <li><a href="javascript:void(0)">Report</a></li>
-            </ul>
-          </div>
-          <div class="col-md-12">
-            <div class="media">
-              <div class="media-left"> <a href="javascript:void(0)"> <%= cl_image_tag(@user.avatar, class: "media-object") %> </a> </div>
-              <div class="media-body">
-                <h4 align="left"><%= @user.fullname %>
-                  <small><i class="fa fa-clock-o"></i> <%= status.created_at %></small> 
-                </h4>
-                <p align="left"><%= status.content %></p>
-                <ul class="nav nav-pills pull-left ">
-                  <li><a href="" title=""><i class="glyphicon glyphicon-thumbs-up"></i> <%= status.likes.count %></a></li>
-                  <li><a href="" title=""><i class=" glyphicon glyphicon-comment"></i><%= status.comments.count %></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 border-top">
-            <div class="status-upload">
-              <% @status_tmp = status %>
-              <% @object = status %>
-              <%= render "images/comment_form" %>
+      <div class="panel panel-default">
+        <div class="btn-group pull-right postbtn">
+          <button type="button" class="dotbtn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="dots"></span> </button>
+          <ul class="dropdown-menu pull-right" role="menu">
+            <li><a href="javascript:void(0)">Hide this</a></li>
+            <li><a href="javascript:void(0)">Delete</a></li>
+          </ul>
+        </div>
+        <div class="col-md-12">
+          <div class="media">
+            <div class="media-left"> <a href="javascript:void(0)"> <%= cl_image_tag(@user.avatar, class: "media-object") %> </a> </div>
+            <div class="media-body">
+              <h4 align="left"><%= @user.fullname %>
+                <small><i class="fa fa-clock-o"></i> <%= status.created_at %></small>
+                <button type="button" data-toggle="modal" data-target="#myModalStatus<%= status.id %>">Report</button>
+                <div id="myModalStatus<%= status.id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <%= form_for :report, url: user_status_reports_path(@user.id, status.id) do |f| %>
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Report</h4>
+                      </div>
+                      <div class="modal-body">
+                        <%= f.text_area :content, class: "form-control" %>
+                      </div>
+                      <div class="modal-footer">
+                        <%= f.submit "Submit report" %>
+                      </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </h4>
+              <p align="left"><%= status.content %></p>
+              <ul class="nav nav-pills pull-left ">
+                <li><a href="" title=""><i class="glyphicon glyphicon-thumbs-up"></i> <%= status.likes.count %></a></li>
+                <li><a href="" title=""><i class=" glyphicon glyphicon-comment"></i><%= status.comments.count %></a></li>
+              </ul>
             </div>
           </div>
         </div>
+        <div class="col-md-12 border-top">
+          <div class="status-upload">
+            <% @status_tmp = status %>
+            <% @object = status %>
+            <%= render "images/comment_form" %>
+          </div>
+        </div>
+      </div>
       <% end %>
     </div>
   </div>
 </div>
-</div>
-

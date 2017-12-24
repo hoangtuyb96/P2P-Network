@@ -15,8 +15,32 @@
         <small>Post</small> 
       </h3>
     </li>
+    <li>
+      <button type="button" data-toggle="modal" data-target="#myModal">Report</button>
+    </li>
   </ul>
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
+      <!-- Modal content-->
+      <div class="modal-content">
+        <%= form_for :report, url: user_reports_path(@user) do |f| %>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Report <%= @user.fullname %></h4>
+          </div>
+          <div class="modal-body">
+            <%= f.text_area :content, class: "form-control" %>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "Submit report" %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
   <%= form_for :relationship, url: relationships_path, remote: true do |f| %>
     <%= hidden_field_tag :sender_id, current_user.id %>
     <%= hidden_field_tag :accepter_id, @user.id %>
