@@ -128,7 +128,7 @@
           <button type="button" class="dotbtn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="dots"></span> </button>
           <ul class="dropdown-menu pull-right" role="menu">
             <li><a href="javascript:void(0)">Hide this</a></li>
-            <li><a href="javascript:void(0)">Delete</a></li>
+            <li><%= link_to "Delete", user_status_path(current_user.id, status.id), method: :delete, remote: true %></li>
           </ul>
         </div>
         <div class="col-md-12">

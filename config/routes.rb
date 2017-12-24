@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     delete "logout", to: "sessions#destroy"
   end
   resources :users do
-    resources :statuses, only: [:new, :create, :index] do
+    resources :statuses, except: [:show, :edit, :update] do
       resources :reports, only: :create
     end
     get "following", to: "relationships#following"
