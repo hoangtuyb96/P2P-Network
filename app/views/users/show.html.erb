@@ -121,7 +121,7 @@
         </div>
       </div>
       <% end %>
-      <% @user.statuses.each do |status| %>
+      <% @user.statuses.reverse.each do |status| %>
       <% @status = status %>
       <div class="panel panel-default">
         <div class="btn-group pull-right postbtn">

@@ -67,6 +67,8 @@ en:
     unlike:
       unlike_button: "Unlike"
   groups:
+    show:
+      title: "%{name_group}"
     new:
       title: "Create new group"
   images:
