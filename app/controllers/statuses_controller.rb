@@ -8,6 +8,7 @@ class StatusesController < ApplicationController
     @statuses = @statuses.paginate(:page => params[:page], :per_page => 15)
     @groups = current_user.group_joined
     @comment = current_user.comments.new
+    @status = current_user.statuses.new
   end
 
   def new
