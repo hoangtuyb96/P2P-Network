@@ -5,6 +5,7 @@
   </div>
   </br>
   <ul class="nav nav-pills pull-left">
+    <%= hidden_field_tag :group_id, params[:id] %>
     <%= f.fields_for :images do |image| %>
       <%= render "image_fields", f: image %> 
     <% end %>

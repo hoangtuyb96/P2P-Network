@@ -16,19 +16,23 @@ class GroupsController < ApplicationController
       group_member.user_id = current_user.id
       group_member.permission = 2
       if group_member.save
-        flash[:success] = "success"
-        redirect_to root_path
+        flash[:success] = "Success"
+        redirect_to user_statuses_path(current_user)
       else
-        flash[:danger] = "fail"
+        flash[:danger] = "Fail"
         redirect_to root_path
       end
     else
-      flash[:danger] = "fail"
+      flash[:danger] = "Fail"
       redirect_to root_path      
     end
   end
 
   def show
+    @group = Group.find_by id: params[:id]
+    @statuses = @group.statuses
+    @comment = current_user.comments.new
+    @status = current_user.statuses.new
   end
 
   private

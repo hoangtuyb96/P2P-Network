@@ -16,12 +16,16 @@ class StatusesController < ApplicationController
 
   def create
     @status = current_user.statuses.new status_params
+    @status.group_id = params[:group_id]
     if status.save
-      flash[:success] = t(".success")
-      redirect_to root_path
+      respond_to do |format|
+        format.js {render inline: "location.reload();" }
+      end
     else
-      flash[:danger] = t("fail")
-      render :new
+      flash[:danger] = "Fail"
+      respond_to do |format|
+        format.js {render inline: "location.reload();" }
+      end
     end
   end
 
