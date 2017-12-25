@@ -22,7 +22,9 @@
                 <h6 class="comment-name"><%= comment.user.fullname %></h6>
                 <span>created at <%= comment.created_at %></span>
                 <i class="fa fa-reply"></i>
-                <i class="fa fa-heart"></i>
+                <%= link_to comment, method: :delete, remote: true do %>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                <% end %>
               </div>
               <div class="comment-content">
                 <%= comment.content %>
