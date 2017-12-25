@@ -28,6 +28,13 @@
       </div>
     </div>
     <div class="col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="status-upload nopaddingbtm">
+            <%= render "new_form_status" %>
+          </div>
+        </div>
+      </div>
       <% @statuses.each do |status| %>
       <% @status = status %>
       <% @user = status.user %>
