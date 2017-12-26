@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get "follower", to: "relationships#follower"
     resources :reports, only: :create
   end
-  resources :groups, except: [:edit, :update, :destroy]
+  resources :groups
   resources :likes, only: [:create, :destroy]
   resources :images, only: :show do
     resources :reports, only: :create

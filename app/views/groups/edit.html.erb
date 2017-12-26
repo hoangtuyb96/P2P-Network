@@ -1,0 +1,77 @@
+<%= provide :title, t(".title", name_group: @group.name) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="box">
+        <div class="avatar-index">
+          <%=cl_image_tag(current_user.avatar) %>
+          <b><%= link_to current_user do %><%= current_user.fullname %><% end %></b>
+        </div>
+        <br>
+        <div align="left">
+          <%= link_to user_following_path(current_user) do %><i style="color:black" class="fa fa-address-book" aria-hidden="true"> Following</i><% end %>
+        </div>
+        <div align="left">
+          <%= link_to user_follower_path(current_user) do %><i style="color:black" class="fa fa-address-book" aria-hidden="true"> Follower</i><% end %>
+        </div>
+        <div align="left">
+          <%= link_to groups_path do %><i style="color:black" class="fa fa-users" aria-hidden="true"> Groups</i><% end %>
+        </div>
+        <% @groups.each do |group| %>
+          <div class="group-show" align="left">
+            <%= link_to group do %><i style="color:gray" class="fa fa-users" aria-hidden="true"><%= group.name %></i><% end %>
+          </div>
+        <% end %>
+        <div align="left">
+          <%= link_to new_group_path do %><i style="color:black" class="fa fa-users" aria-hidden="true"> Create New Group</i><% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="box">
+        <br>
+        <% if @group.cover.present? %>
+          <%= cl_image_tag(@group.cover, :width => 850, :height => 300) %>
+        <% else %>
+          <%= cl_image_tag("https://renderman.pixar.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png", :width => 850, :height => 300) %>
+        <% end %>
+        <br><br>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= @group.name %></h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <%= form_for @group do |f| %>
+              <div class="col-md-3 col-lg-3 " align="center">
+                <%= cl_image_tag(@group.cover, alt: "user_image", :width=>180) %>
+                <%= f.file_field :cover %>
+              </div>
+              <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <div class="form-group">
+                        <%= f.text_field :name, placeholder: @group.name, class: "form-control" %>
+                      </div>
+                    </tr>
+                    <tr>
+                      <div class="form-group">
+                        <%= f.text_field :about, placeholder: @group.about, class: "form-control" %>
+                      </div>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="panel-footer">
+                  <%= f.submit "Update info group", class: "btn btn-primary" %>
+                  <%= link_to "Delete group", @group, method: :delete, class: "btn btn-danger", remote: true %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
