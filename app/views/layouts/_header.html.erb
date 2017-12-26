@@ -1,11 +1,25 @@
 <header class = "navbar navbar-fixed-top navbar-inverse">
   <div class = "container">
-    <% if user_signed_in? %>
-      <%= link_to t("app_name"), user_statuses_path(current_user.id) , id: "logo" %>
-    <% else %>
-      <%= link_to t("app_name"), root_path , id: "logo" %>
-    <% end %>
     <nav>
+      <ul class="nav navbar-nav navbar-left">
+      <% if user_signed_in? %>
+        <li><%= link_to t("app_name"), user_statuses_path(current_user.id) , id: "logo" %></li>
+      <% else %>
+        <li><%= link_to t("app_name"), root_path , id: "logo" %></li>
+      <% end %>
+        <li>
+          <%= form_for :search, url: search_path do |f| %>
+          <div class="input-group stylish-input-group">
+            <%= f.text_field :q, placeholder: "Search..." %>
+            <span class="input-group-addon">
+              <%= f.button :submit do %>
+                <span class="glyphicon glyphicon-search"></span>
+              <% end %>
+            </span>
+          </div>
+          <% end %>
+        </li>
+      </ul>
       <ul class = "nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>
