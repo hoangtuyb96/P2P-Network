@@ -35,6 +35,10 @@
         <% else %>
           <%= cl_image_tag("https://renderman.pixar.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png", :width => 850, :height => 300) %>
         <% end %>
+        <br><br>
+        <% if @gm.permission == 2 %>
+          <%= link_to "Setting group", edit_group_path(@group), class: "btn btn-primary"%>
+        <% end %>
         <% if @gm.nil? %>
           <h2>You aren't in <%= @group.name %> group</h2>
           Do you want to join this group???

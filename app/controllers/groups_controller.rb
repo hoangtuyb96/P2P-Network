@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :update 
   before_action :check_logged_in, only: %i(index new create)
-  before_action :find_group, only: :show
-  before_action :find_group_member, only: :show
+  before_action :find_group, only: %i(show edit update destroy)
+  before_action :find_group_member, only: %i(show edit)
 
   def index
   end
@@ -30,10 +31,36 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find_by id: params[:id]
     @statuses = @group.statuses
     @comment = current_user.comments.new
     @status = current_user.statuses.new
+  end
+
+  def edit
+    unless @gm.permission == 2
+      flash[:danger] = "You can't setting this group"
+      redirect_to user_statuses_path(current_user)
+    end
+  end
+
+  def update
+    if group.update_attributes group_params
+      flash[:success] = "Updated successfully"
+      render :edit
+    else
+      flash[:danger] = "Can't update info group now"
+      render :edit
+    end
+  end
+
+  def destroy
+    if group.destroy
+      flash[:success] = "Deleted successfully"
+      redirect_to user_statuses_path(current_user)
+    else
+      flash[:danger] = "Can't delete group"
+      render :edit
+    end
   end
 
   private

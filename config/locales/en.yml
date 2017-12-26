@@ -71,6 +71,8 @@ en:
       title: "%{name_group}"
     new:
       title: "Create new group"
+    edit: 
+      title: "Edit %{name_group}"
   images:
     show:
       title: "Image"
