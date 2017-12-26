@@ -45,7 +45,9 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by id: params[:id]
     unless comment.user == current_user && comment.commentable.user == current_user
       flash[:danger] = "You can't delete this comment"
-      redirect_to root_path
+      respond_to do |format|
+        format.js {render inline: "location.reload();" }
+      end
     end
   end
 end
