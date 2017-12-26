@@ -44,9 +44,11 @@ class UsersController < ApplicationController
   end
 
   def check_permission
-    unless user == current_user
-      redirect_to root_path
-      flash[:fail] = "You don't have a permission to do"
+    unless current_user.is_admin
+      unless user == current_user
+        redirect_to root_path
+        flash[:fail] = "You don't have a permission to do"
+      end
     end
   end
 end

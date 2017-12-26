@@ -61,10 +61,12 @@ class StatusesController < ApplicationController
   end
 
   def check_permission
-    unless status.user == current_user
-      flash[:danger] = "You can't delete this status."
-      respond_to do |format|
-        format.js {render inline: "location.reload();" }
+    unless current_user.is_admin
+      unless status.user == current_user
+        flash[:danger] = "You can't delete this status."
+        respond_to do |format|
+          format.js {render inline: "location.reload();" }
+        end
       end
     end
   end
