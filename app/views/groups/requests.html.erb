@@ -1,0 +1,39 @@
+<% provide :title, "All request" %>
+<div class="container">
+  <div class="row">
+    <%= render "layouts/infor_bar" %>
+    <div class="col-md-9">
+      <div class="box">
+        <br>
+        <% unless @requests.present? %>
+          <h2>There isn't request to join this group</h2>
+        <% else %>
+          <table>
+            <tr>
+              <th style="text-align: center">Fullname</th>
+              <th style="text-align: center">Email</th>
+              <th style="text-align: center">Sex</th>
+              <th style="text-align: center">Action</th>
+            </tr>
+          <% @requests.each do |request| %>
+            <% @user = User.find_by id: request.user_id %>
+            <tr>
+              <td><%= link_to @user.fullname, user_path(@user.id) %></td>
+              <td><%= link_to @user.email, user_path(@user.id) %></td>
+              <td><% if @user.sex == 0 %>Male<% else %>Female<% end %></td>
+              <td>
+                <%= link_to group_member_path(request.id), method: :patch, remote: true do %>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                <% end %>
+                <%= link_to group_member_path(request.id), method: :delete, remote: true do %>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -502,3 +502,20 @@ ul #notificationList
     border:0;
     background:transparent;
 }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 80px;
+  height: 50px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}

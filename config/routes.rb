@@ -16,14 +16,16 @@ Rails.application.routes.draw do
     get "follower", to: "relationships#follower"
     resources :reports, only: :create
   end
-  resources :groups
+  resources :groups do
+    get "requests", to: "groups#requests"
+  end
   resources :likes, only: [:create, :destroy]
   resources :images, only: :show do
     resources :reports, only: :create
   end
   resources :comments, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :group_members, only: [:create]
+  resources :group_members, only: [:create, :update, :destroy]
   post "search", to: "search#search"
   mount ActionCable.server => "/cable"
 end

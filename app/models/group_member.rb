@@ -9,4 +9,10 @@ class GroupMember < ApplicationRecord
   end
 
   scope :find_group_member, lambda_find_group_member
+
+  lambda_find_requests = lambda do |group_id|
+    where permission: 0, group_id: group_id
+  end
+
+  scope :find_requests, lambda_find_requests
 end
