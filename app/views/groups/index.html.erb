@@ -35,13 +35,10 @@
               <div class="list-user-group">
                 <%= link_to group do %>
                   <% unless group.cover.present? %>
-                    <%= cl_image_tag("https://renderman.pixar.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png") %>
+                    <%= cl_image_tag("https://renderman.pixar.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png", :width=>400, :height=>300) %>
                     <h3><%= group.name %></h3>
                   <% else %>
-                    <%= cl_image_tag(group.cover, :transformation=>[
-                      {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
-                      {:width=>300, :crop=>"scale"}
-                      ]) %>
+                    <%= cl_image_tag(group.cover, :width=>400, :height=>300) %>
                     <h3><%= group.name %></h3>
                   <% end %>
                 <% end %>

@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :check_logged_in, only: %i(index new create)
   before_action :find_group, only: :show
+  before_action :find_group_member, only: :show
 
   def index
   end
@@ -45,5 +46,9 @@ class GroupsController < ApplicationController
 
   def find_group
     @group = Group.find_by id: params[:id]
+  end
+
+  def find_group_member
+    @gm = GroupMember.find_group_member(current_user.id, @group.id).first
   end
 end
