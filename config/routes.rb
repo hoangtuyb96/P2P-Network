@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
   resources :comments, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :group_members, only: [:create]
   post "search", to: "search#search"
   mount ActionCable.server => "/cable"
 end
