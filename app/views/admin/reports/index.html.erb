@@ -1,0 +1,53 @@
+<% provide :title, "All report" %>
+<div class="container">
+  <div class="box">
+    <br>
+    <% unless @reports.present? %>
+      <h2>There isn't report to join this group</h2>
+    <% else %>
+      <table>
+        <tr>
+          <th style="text-align: center">User</th>
+          <th style="text-align: center">Report type</th>
+          <th style="text-align: center">Report id</th>
+          <th style="text-align: center">Content</th>
+          <th style="text-align: center">Action</th>
+        </tr>
+      <% @reports.each do |report| %>
+        <% @user = User.find_by id: report.user_id %>
+        <% if report.reportable_type == "User" %>
+          <% @user_be_reported = User.find_by id: report.reportable_id %>
+        <% elsif report.reportable_type == "Status" %>
+          <% @status_be_reported = Status.find_by id: report.reportable_id %>
+        <% else %>
+          <% @image_be_reported = Image.find_by id: report.reportable_id %>
+        <% end %>
+        <tr>
+          <td><%= link_to report.user.fullname, user_path(@user) %></td>
+          <td><%= report.reportable_type %></td>
+          <td><%= report.reportable_id %></td>
+          <td><%= report.content %></td>
+          <td>
+            <% if report.reportable_type == "User" %>
+              <%= link_to user_path(report.reportable_id), method: :delete, remote: true do %>
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <% end %>
+            <% elsif report.reportable_type == "Status" %>
+              <%= link_to user_status_path(current_user.id, report.reportable_id), method: :delete, remote: true do %>
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <% end %>
+            <% else %>
+              <%= link_to image_path(report.reportable_id), method: :delete, remote: true do %>
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+            <%= link_to admin_report_path(report.id), method: :delete, remote: true do %>
+              <i class="fa fa-times" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>

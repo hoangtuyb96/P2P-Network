@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   has_many :statuses
   has_many :report_from_users, class_name: Report.name, :as => :reportable
-  has_many :reports
+  has_many :reports, dependent: :destroy
   has_many :notification_from_users, class_name: Notification.name,
     :as => :notificationable
   has_many :notifications

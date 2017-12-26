@@ -20,12 +20,15 @@ Rails.application.routes.draw do
     get "requests", to: "groups#requests"
   end
   resources :likes, only: [:create, :destroy]
-  resources :images, only: :show do
+  resources :images, only: [:show, :destroy] do
     resources :reports, only: :create
   end
   resources :comments, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :group_members, only: [:create, :update, :destroy]
   post "search", to: "search#search"
+  namespace :admin do
+    resources :reports
+  end
   mount ActionCable.server => "/cable"
 end
