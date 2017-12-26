@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     if @user.save
       flash[:success] = t(".success")
+      sign_in user
       redirect_to root_path
     else
       flash[:danger] = t(".failed")

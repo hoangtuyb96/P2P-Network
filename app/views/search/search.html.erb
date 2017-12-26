@@ -1,0 +1,45 @@
+<% provide :title, "Search" %>
+<div class="container">
+  <div class="col-md-6">
+    <h1>Users</h1>
+    <div class="box">
+      <div class="media">
+        <% @users.each do |user| %>
+          <% @user_tmp = User.find_by id: user.id %>
+          <%= link_to user_path(user.id) do %>
+            <div class="col-md-6">
+              <%= cl_image_tag(@user_tmp.avatar) %>
+            </div>
+            <div class="col-md-6">
+              <%= @user_tmp.fullname %>
+            </div>
+            <div class="clearfix"></div>
+            <br>
+            <br>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h1>Groups</h1>
+    <div class="box">
+      <div class="media">
+        <% @groups.each do |group| %>
+          <% @group_tmp = Group.find_by id: group.id %>
+          <%= link_to group_path(group.id) do %>
+            <div class="col-md-6">
+              <%= @group_tmp.cover %>
+            </div>
+            <div class="col-md-6">
+              <%= @group_tmp.name %>
+            </div>
+            <div class="clearfix"></div>
+            <br>
+            <br>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
