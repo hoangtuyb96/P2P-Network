@@ -1,0 +1,26 @@
+<div class="col-md-3">
+  <div class="box">
+    <div class="avatar-index">
+      <%=cl_image_tag(current_user.avatar) %>
+      <b><%= link_to current_user do %><%= current_user.fullname %><% end %></b>
+    </div>
+    <br>
+    <div align="left">
+      <%= link_to user_following_path(current_user) do %><i style="color:black" class="fa fa-address-book" aria-hidden="true"> Following</i><% end %>
+    </div>
+    <div align="left">
+      <%= link_to user_follower_path(current_user) do %><i style="color:black" class="fa fa-address-book" aria-hidden="true"> Follower</i><% end %>
+    </div>
+    <div align="left">
+      <%= link_to groups_path do %><i style="color:black" class="fa fa-users" aria-hidden="true"> Groups</i><% end %>
+    </div>
+    <% @groups.each do |group| %>
+      <div class="group-show" align="left">
+        <%= link_to group do %><i style="color:gray" class="fa fa-users" aria-hidden="true"><%= group.name %></i><% end %>
+      </div>
+    <% end %>
+    <div align="left">
+      <%= link_to new_group_path do %><i style="color:black" class="fa fa-users" aria-hidden="true"> Create New Group</i><% end %>
+    </div>
+  </div>
+</div>

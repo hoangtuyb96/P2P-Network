@@ -38,6 +38,7 @@
         <br><br>
         <% if @gm.permission == 2 %>
           <%= link_to "Setting group", edit_group_path(@group), class: "btn btn-primary"%>
+          <%= link_to "Show all request", group_requests_path(@group), class: "btn btn-success" %>
         <% end %>
         <% if @gm.nil? %>
           <h2>You aren't in <%= @group.name %> group</h2>

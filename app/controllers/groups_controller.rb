@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :update 
-  before_action :check_logged_in, only: %i(index new create)
+  before_action :check_logged_in
   before_action :find_group, only: %i(show edit update destroy)
-  before_action :find_group_member, only: %i(show edit)
+  before_action :find_group_member, only: %i(show edit update destroy)
 
   def index
   end
@@ -37,10 +37,6 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    unless @gm.permission == 2
-      flash[:danger] = "You can't setting this group"
-      redirect_to user_statuses_path(current_user)
-    end
   end
 
   def update
@@ -63,6 +59,11 @@ class GroupsController < ApplicationController
     end
   end
 
+  def requests
+    @group = Group.find_by id: params[:group_id]
+    @requests = GroupMember.find_requests(@group.id)
+  end
+
   private
 
   attr_reader :group, :group_member
@@ -77,5 +78,12 @@ class GroupsController < ApplicationController
 
   def find_group_member
     @gm = GroupMember.find_group_member(current_user.id, @group.id).first
+  end
+
+  def check_admin_group
+    unless @gm.permission == 2
+      flash[:danger] = "You can't setting this group"
+      redirect_to user_statuses_path(current_user)
+    end
   end
 end
